@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>POS Tagger</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="container">
+
+        <h1>🧠 POS Tagger</h1>
+
+        <p class="subtitle">
+            Hidden Markov Model + Viterbi Algorithm
+        </p>
+
+        <form method="POST">
+
+            <input type="text"
+                   name="sentence"
+                   placeholder="Enter a sentence..."
+                   required>
+
+            <button type="submit">
+                Predict Tags
+            </button>
+
+        </form>
+
+        {% if result %}
+
+        <div class="result-box">
+
+            <h2>Prediction Result</h2>
+
+            <table>
+
+                <tr>
+                    <th>Word</th>
+                    <th>POS Tag</th>
+                </tr>
+
+                {% for word, tag in result %}
+
+                <tr>
+                    <td>{{ word }}</td>
+                    <td>
+                        <span class="tag">
+                            {{ tag }}
+                        </span>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
